@@ -19,9 +19,9 @@ public class MenuItemInstance {
     @Column(nullable = false)
     private String ingredients;
 
-    @ManyToOne()
+   /* @ManyToOne()
     @JoinColumn(name = "Menu_Instance_Id")
-    private MenuInstance menuInstance;
+    private MenuInstance menuInstance;*/
 
     @Column(name = "Created_By",nullable = false)
     private String createdBy;
@@ -57,9 +57,9 @@ public class MenuItemInstance {
 //        return menuInstance;
 //    }
 
-    public void setMenuInstance(MenuInstance menuInstance) {
+    /*public void setMenuInstance(MenuInstance menuInstance) {
         this.menuInstance = menuInstance;
-    }
+    }*/
 
     public String getCreatedBy() {
         return createdBy;

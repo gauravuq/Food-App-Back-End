@@ -22,7 +22,9 @@ public class MenuInstance {
     @Column(name = "Updated_By",nullable = false)
     private String updatedBy;
 
-    @OneToMany(mappedBy = "menuInstance",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    //@OneToMany(mappedBy = "menuInstance",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    @OneToMany (cascade = CascadeType.ALL)
+    @JoinColumn(name = "Menu_Instance_Id")
     private List<MenuItemInstance> menuItemInstanceList = new ArrayList<>();
 
     public List<MenuItemInstance> getMenuItemInstanceList() {
