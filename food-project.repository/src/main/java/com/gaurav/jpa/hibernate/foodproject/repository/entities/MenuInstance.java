@@ -22,8 +22,8 @@ public class MenuInstance {
     @Column(name = "Updated_By",nullable = false)
     private String updatedBy;
 
-    @OneToMany(mappedBy = "menuInstance",fetch = FetchType.EAGER,cascade = CascadeType.ALL)
-    private List<MenuItemInstance> menuItemInstanceList;
+    @OneToMany(mappedBy = "menuInstance",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    private List<MenuItemInstance> menuItemInstanceList = new ArrayList<>();
 
     public List<MenuItemInstance> getMenuItemInstanceList() {
         return menuItemInstanceList;
@@ -89,7 +89,6 @@ public class MenuInstance {
         this.menuName = menuName;
         this.createdBy = createdBy;
         this.updatedBy = updatedBy;
-        this.menuItemInstanceList = new ArrayList<>();
     }
 
     public MenuInstance() {

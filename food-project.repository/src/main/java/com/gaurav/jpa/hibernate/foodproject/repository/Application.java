@@ -1,5 +1,6 @@
 package com.gaurav.jpa.hibernate.foodproject.repository;
 
+import com.gaurav.jpa.hibernate.foodproject.repository.entities.MenuInstance;
 import com.gaurav.jpa.hibernate.foodproject.repository.repositories.MenuInstanceRepo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -8,6 +9,8 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.client.RestTemplateBuilder;
+
+import java.util.List;
 
 @SpringBootApplication
 public class Application implements CommandLineRunner {
@@ -32,7 +35,8 @@ public class Application implements CommandLineRunner {
 		// find and delete one instance of MenuInstance
 		//menuRepoSpringData.delete(menuInstance.get());
 		// find every instance MenuInstance
-//		List<MenuInstance> menuInstances = 	menuRepo.findAll();
+		List<MenuInstance> menuInstances = 	menuInstanceRepo.findAll();
+		System.out.println(menuInstances);
 		// delete every instance of MenuInstance
 		//menuRepoSpringData.deleteAll(menuInstances);
 		// create a MenuInstance and save it

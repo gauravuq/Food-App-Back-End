@@ -52,9 +52,10 @@ public class MenuItemInstance {
         this.ingredients = ingredients;
     }
 
-    public MenuInstance getMenuInstance() {
-        return menuInstance;
-    }
+    // never declare this if i want to send menu with its menu items to the client.
+//    public MenuInstance getMenuInstance() {
+//        return menuInstance;
+//    }
 
     public void setMenuInstance(MenuInstance menuInstance) {
         this.menuInstance = menuInstance;
@@ -103,4 +104,17 @@ public class MenuItemInstance {
     public MenuItemInstance() {
     }
 
+
+    @Override
+    public String toString() {
+        return "MenuItemInstance{" +
+                "id=" + id +
+                ", itemName='" + itemName + '\'' +
+                ", ingredients='" + ingredients + '\'' +
+                ", createdBy='" + createdBy + '\'' +
+                ", updatedBy='" + updatedBy + '\'' +
+                ", lastUpdatedDate=" + lastUpdatedDate +
+                ", createdDate=" + createdDate +
+                '}';
+    }
 }
