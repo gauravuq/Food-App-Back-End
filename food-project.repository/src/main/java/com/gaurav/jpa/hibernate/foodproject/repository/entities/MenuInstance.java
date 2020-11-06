@@ -2,37 +2,41 @@ package com.gaurav.jpa.hibernate.foodproject.repository.entities;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
-
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Table(name="MenuInstance")
+
 public class MenuInstance {
 
     @Id
     @GeneratedValue // Generating id through jpa
     private Long id ;
+
+    @NotEmpty
+    @NotNull
     @Column(name = "Menu_Name",nullable = false)
     private String menuName;
     @Column(name = "Created_By",nullable = false)
     private String createdBy;
     @Column(name = "Updated_By",nullable = false)
     private String updatedBy;
-
     //@OneToMany(mappedBy = "menuInstance",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     @OneToMany (cascade = CascadeType.ALL)
     @JoinColumn(name = "Menu_Instance_Id")
-    private List<MenuItemInstance> menuItemInstanceList = new ArrayList<>();
+    private List<MenuItemInstance> menuItemInstances = new ArrayList<>();
 
-    public List<MenuItemInstance> getMenuItemInstanceList() {
-        return menuItemInstanceList;
+    public List<MenuItemInstance> getMenuItemInstances() {
+        return menuItemInstances;
     }
 
     public void addMenuItemInstance(MenuItemInstance menuItemInstance) {
-        this.menuItemInstanceList.add(menuItemInstance);
+        this.menuItemInstances.add(menuItemInstance);
     }
 
     @UpdateTimestamp
@@ -40,11 +44,9 @@ public class MenuInstance {
     @CreationTimestamp
     private LocalDateTime createdDate;
 
-
     public Long getId() {
         return id;
     }
-
 
     public String getMenuName() {
         return menuName;

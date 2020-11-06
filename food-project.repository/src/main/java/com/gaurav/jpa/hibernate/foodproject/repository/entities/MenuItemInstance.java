@@ -1,31 +1,30 @@
 package com.gaurav.jpa.hibernate.foodproject.repository.entities;
 
+
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
-
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
 
 @Entity
-@Table(name="MenuItemInstance")
+@Table(name = "MenuItemInstance")
 public class MenuItemInstance {
 
     @Id
     @GeneratedValue // Generating id through jpa
-    private Long id ;
-    @Column(name = "Item_Name",nullable = false)
+    private Long id;
+    @Column(name = "Item_Name", nullable = false)
     private String itemName;
     @Column(nullable = false)
     private String ingredients;
-
-   /* @ManyToOne()
-    @JoinColumn(name = "Menu_Instance_Id")
-    private MenuInstance menuInstance;*/
-
-    @Column(name = "Created_By",nullable = false)
+    //@JsonIgnore
+    //@ManyToOne()
+    //@JoinColumn(name = "Menu_Instance_Id")
+    //private MenuInstance menuInstance;
+    @Column(name = "Created_By", nullable = false)
     private String createdBy;
-    @Column(name = "Updated_By",nullable = false)
+    @Column(name = "Updated_By", nullable = false)
     private String updatedBy;
     @UpdateTimestamp
     private LocalDateTime lastUpdatedDate;
@@ -52,12 +51,12 @@ public class MenuItemInstance {
         this.ingredients = ingredients;
     }
 
-    // never declare this if i want to send menu with its menu items to the client.
-//    public MenuInstance getMenuInstance() {
-//        return menuInstance;
-//    }
+    // For Uni directional relationships no need to have these getter and setter for foreign keys;
+   /* public MenuInstance getMenuInstance() {
+        return menuInstance;
+    }
 
-    /*public void setMenuInstance(MenuInstance menuInstance) {
+    public void setMenuInstance(MenuInstance menuInstance) {
         this.menuInstance = menuInstance;
     }*/
 
