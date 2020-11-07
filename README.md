@@ -5,7 +5,7 @@ This project is abour creating  a Back-End Microservices based solution for a ki
 
 #### This Backend is composed of three microservices , explained as below
 * Menu Back-End Service : handles menu lifecycle;
-  - [ ] CRUD: Menu Type and its Menu items;
+  - [X] CRUD: Menu Type and its Menu items;
 * Order Back-End Service: handles order lifecycle;
   - [ ] CRUD: Booking and its Booking items;
   - [ ] Handle Rules for creation of an order booking;
