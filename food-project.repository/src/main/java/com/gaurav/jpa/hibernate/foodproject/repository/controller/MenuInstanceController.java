@@ -5,14 +5,19 @@ package com.gaurav.jpa.hibernate.foodproject.repository.controller;
 import com.gaurav.jpa.hibernate.foodproject.repository.entities.MenuInstance;
 import com.gaurav.jpa.hibernate.foodproject.repository.messages.ResponseMessage;
 import com.gaurav.jpa.hibernate.foodproject.repository.services.MenuInstanceService;
+import com.gaurav.jpa.hibernate.foodproject.repository.services.MenuPdfGeneratorService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.InputStreamResource;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.io.ByteArrayInputStream;
 import java.util.List;
 
 @RestController
@@ -23,6 +28,9 @@ public class MenuInstanceController {
 
     @Autowired
     MenuInstanceService menuInstanceService;
+
+    @Autowired
+    MenuPdfGeneratorService menuPdfGeneratorService;
 
     @GetMapping("/menu/all")
     public List<MenuInstance> retrieveMenus(){
@@ -56,6 +64,22 @@ public class MenuInstanceController {
         ResponseMessage responseMessage = new ResponseMessage("Deleted a Menu","Delete",menuId,"Menu");
         return new ResponseEntity<ResponseMessage>(responseMessage, HttpStatus.CREATED)  ;
     }
+
+    @GetMapping(value = "/menu/pdf",produces = MediaType.APPLICATION_PDF_VALUE)
+    public ResponseEntity<InputStreamResource> getMenuPdf()
+    {
+        var headers = new HttpHeaders();
+        ByteArrayInputStream menuPdf;
+        List<MenuInstance> menuInstances = 	menuInstanceService.getAllMenus();
+        headers.add("Content-Disposition", "inline; filename=Menu.pdf");  // attachment
+        menuPdf = menuPdfGeneratorService.generateMenuWithMenuItems(menuInstances.get(0));
+        return ResponseEntity
+                .ok()
+                .headers(headers)
+                .contentType(MediaType.APPLICATION_PDF)
+                .body(new InputStreamResource(menuPdf));
+    }
+
 
 
 }
