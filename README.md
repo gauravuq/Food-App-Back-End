@@ -22,7 +22,9 @@ This project is about creating a Back-End Microservices based solution for a kit
 * Front-End UI to Back-End Services request protected by PKCE Authorisation Code Grant Type;
 * Communication between Back-End Services is protected by Client Credential Grant Type;
 
-
+#### Api Gateway for Microservices 
+  - [ ] To enable Api Gateway for microservices.
+  
 ### Order Placement Scenario
 
 ![Order Placement Scenario](https://github.com/gauravuq/Food-App-Back-End/blob/master/Food%20App%20Back-End%20Order%20Scenario%20.svg)
