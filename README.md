@@ -1,7 +1,8 @@
 # Food-App-Back-End
 
-###
 This project is about creating a Back-End Microservices based solution for a kitchen management Front-End where customer can Place/Update food orders, administration staff could create/edit daily menus and email valid customers. This app in whole is to be used by a small college where customers are students who can book their meals online. 
+
+### Design of the domain
 
 ![Design of the domain](https://github.com/gauravuq/Food-App-Back-End/blob/master/Food%20App%20Back-End%20Domain.svg)
 
@@ -22,3 +23,8 @@ This project is about creating a Back-End Microservices based solution for a kit
 * Communication between Back-End Services is protected by Client Credential Grant Type;
 
 
+### Order Placement Scenario
+
+![Order Placement Scenario](https://github.com/gauravuq/Food-App-Back-End/blob/master/Food%20App%20Back-End%20Order%20Scenario%20.svg)
+
+#### More updates coming soon !!!
