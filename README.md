@@ -17,8 +17,8 @@ This project is about creating a Back-End Microservices based solution for a kit
 * User Back-End Service: for keep track of Customers and Admin staff using this System.
   - [ ] Integrate with email service for sending order booking.
   
-  #### Back-End Security is being implemented by usind Keycloak Server which priovide OAuth 2.0 Standard, explained as below
-  * Front-End UI to Back-End Services request protected by PKCE Authorisation Code Grant Type;
-  * Communication between Back-End Services is protected by Client Credential Grant Type;
+#### Back-End Security is being implemented by usind Keycloak Server which priovide OAuth 2.0 Standard, explained as below
+* Front-End UI to Back-End Services request protected by PKCE Authorisation Code Grant Type;
+* Communication between Back-End Services is protected by Client Credential Grant Type;
 
 
