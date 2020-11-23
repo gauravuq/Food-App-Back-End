@@ -10,6 +10,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 
@@ -37,12 +38,10 @@ public class MenuInstanceService {
     }
 
     public void deleteMenuAndItems(Long menuId) {
-        try {
             menuInstanceRepo.deleteById(menuId);
-        } catch (Exception exp) {
-            throw new MenuInstanceException("Wrong Menu id sent for deletion::" + menuId);
-        }
-
     }
 
+    public MenuInstance getMenusByTypeAndForDate(String menuType, LocalDate menuForDate) {
+        return menuInstanceRepo.findByMenuTypeAndMenuForDate(menuType,menuForDate);
+    }
 }

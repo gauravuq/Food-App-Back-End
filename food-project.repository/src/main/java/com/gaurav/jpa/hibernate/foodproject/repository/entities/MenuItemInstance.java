@@ -1,6 +1,7 @@
 package com.gaurav.jpa.hibernate.foodproject.repository.entities;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 import javax.persistence.*;
@@ -18,10 +19,9 @@ public class MenuItemInstance {
     private String itemName;
     @Column(nullable = false)
     private String ingredients;
-    //@JsonIgnore
-    //@ManyToOne()
-    //@JoinColumn(name = "Menu_Instance_Id")
-    //private MenuInstance menuInstance;
+    @ManyToOne()
+    @JoinColumn(name = "Menu_Instance_Id")
+    private MenuInstance menuInstance;
     @Column(name = "Created_By", nullable = false)
     private String createdBy;
     @Column(name = "Updated_By", nullable = false)
@@ -51,14 +51,14 @@ public class MenuItemInstance {
         this.ingredients = ingredients;
     }
 
-    // For Uni directional relationships no need to have these getter and setter for foreign keys;
-   /* public MenuInstance getMenuInstance() {
+    @JsonIgnore
+    public MenuInstance getMenuInstance() {
         return menuInstance;
     }
 
     public void setMenuInstance(MenuInstance menuInstance) {
         this.menuInstance = menuInstance;
-    }*/
+    }
 
     public String getCreatedBy() {
         return createdBy;
