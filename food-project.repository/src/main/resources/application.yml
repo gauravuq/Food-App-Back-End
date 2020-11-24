@@ -1,7 +1,7 @@
 server:
   servlet:
     context-path: /api  # change the context path which is before the resource path;
-  port: 8082
+  port: 0 # random port 
 logging:
   level:
     org:
