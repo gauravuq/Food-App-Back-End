@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: food-app-discovery-service
+server:
+  port: 10079
+
+logging:
+  level:
+    com:
+      netflix:
+        eureka: OFF
+        discovery: OFF

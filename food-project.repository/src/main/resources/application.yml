@@ -31,3 +31,9 @@ spring:
   output:
     ansi:
       enabled: ALWAYS
+  application:
+    name: food-app-menu-service
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:10079/eureka
