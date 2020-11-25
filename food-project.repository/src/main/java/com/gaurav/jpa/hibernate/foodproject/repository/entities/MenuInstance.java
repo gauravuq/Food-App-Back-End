@@ -8,6 +8,7 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,6 +32,8 @@ public class MenuInstance {
     private String menuType;
     @Column(name = "Menu_For_Date", nullable = false)
     private LocalDate menuForDate;
+    @Column(name="Order_Time_Limit",nullable = false)
+    private LocalTime orderTimeLimit;
 
     @Column(name = "Created_By", nullable = false)
     private String createdBy;
@@ -101,10 +104,15 @@ public class MenuInstance {
 
     public void setMenuForDate(LocalDate menuForDate) { this.menuForDate = menuForDate; }
 
-    public MenuInstance(@NotEmpty @NotNull String menuName, String menuType, LocalDate menuForDate, String createdBy, String updatedBy) {
+    public LocalTime getOrderTimeLimit() { return orderTimeLimit; }
+
+    public void setOrderTimeLimit(LocalTime orderTimeLimit) { this.orderTimeLimit = orderTimeLimit; }
+
+    public MenuInstance(@NotEmpty @NotNull String menuName, String menuType, LocalDate menuForDate, LocalTime orderTimeLimit ,String createdBy, String updatedBy) {
         this.menuName = menuName;
         this.menuType = menuType;
         this.menuForDate = menuForDate;
+        this.orderTimeLimit = orderTimeLimit;
         this.createdBy = createdBy;
         this.updatedBy = updatedBy;
     }
@@ -119,6 +127,7 @@ public class MenuInstance {
                 ", menuName='" + menuName + '\'' +
                 ", menuType='" + menuType + '\'' +
                 ", menuForDate=" + menuForDate +
+                ", orderTimeLimit=" + orderTimeLimit +
                 ", createdBy='" + createdBy + '\'' +
                 ", updatedBy='" + updatedBy + '\'' +
                 ", lastUpdatedDate=" + lastUpdatedDate +

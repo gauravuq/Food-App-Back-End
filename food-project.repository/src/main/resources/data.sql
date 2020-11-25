@@ -1,7 +1,7 @@
 
 
-INSERT INTO MENU_INSTANCE(ID,Menu_Name,Menu_Type,Menu_For_Date,Created_By,Updated_By,last_Updated_Date,created_Date)VALUES(1000,'Lunch','Lunch','2020-11-24','Gaurav Sood','N/A',sysdate,sysdate);
-INSERT INTO MENU_INSTANCE(ID,Menu_Name,Menu_Type,Menu_For_Date,Created_By,Updated_By,last_Updated_Date,created_Date)VALUES(1001,'Bara Kahana','Lunch','2020-11-25','Gaurav Sood','N/A',sysdate,sysdate);
+INSERT INTO MENU_INSTANCE(ID,Menu_Name,Menu_Type,Menu_For_Date,Order_Time_Limit,Created_By,Updated_By,last_Updated_Date,created_Date)VALUES(1000,'Lunch','Lunch','2020-11-24','03:00:00','Gaurav Sood','N/A',sysdate,sysdate);
+INSERT INTO MENU_INSTANCE(ID,Menu_Name,Menu_Type,Menu_For_Date,Order_Time_Limit,Created_By,Updated_By,last_Updated_Date,created_Date)VALUES(1001,'Bara Kahana','Lunch','2020-11-25','03:00:00','Gaurav Sood','N/A',sysdate,sysdate);
 
 
 INSERT INTO MENU_ITEM_INSTANCE(ID,Item_Name,Menu_Instance_Id,Created_By,Updated_By,last_Updated_Date,created_Date,Ingredients) VALUES (2000,'Item1',1000,'Gaurav Sood','N/A',sysdate,sysdate,'I1,I2,I3');
