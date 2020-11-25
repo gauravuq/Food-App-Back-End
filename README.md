@@ -23,9 +23,9 @@ This project is about creating a Back-End Microservices based solution for a kit
 * [ ] Communication between Back-End Services is protected by Client Credential Grant Type;
 
 #### Api Gateway for Microservices 
-  - [ ] To enable Spring Cloud Api Gateway for microservices.
+  - [X] To enable Spring Cloud Api Gateway for microservices.
 #### Eureka Service Registry for Microservices 
-  - [ ] To enable Eureka Service Registry for microservices.
+  - [X] To enable Eureka Service Registry for microservices.
   
 ### Order Placement Scenario
 
