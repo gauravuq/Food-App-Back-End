@@ -1,7 +1,8 @@
+
 server:
   servlet:
     context-path: /api  # change the context path which is before the resource path;
-  port: 10082 # random port
+  port: 10083 # random port
 logging:
   level:
     org:
@@ -32,7 +33,7 @@ spring:
     ansi:
       enabled: ALWAYS
   application:
-    name: food-app-menu-service
+    name: food-app-order-service
 eureka:
   client:
     service-url:

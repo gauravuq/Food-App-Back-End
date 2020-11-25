@@ -13,6 +13,20 @@ spring:
             - Method=GET,POST,DELETE,PUT,OPTIONS,HEAD
           filters:
             - RemoveRequestHeader=Cookie
+        - id: food-app-order-service
+          uri: lb://food-app-order-service
+          predicates:
+            - Path=/api/order/**
+            - Method=GET,POST,DELETE,PUT,OPTIONS,HEAD
+          filters:
+            - RemoveRequestHeader=Cookie
+        - id: food-app-user-service
+          uri: lb://food-app-user-service
+          predicates:
+            - Path=/api/user/**
+            - Method=GET,POST,DELETE,PUT,OPTIONS,HEAD
+          filters:
+            - RemoveRequestHeader=Cookie
 eureka:
   client:
     service-url:
