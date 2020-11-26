@@ -1,29 +1,29 @@
-package com.gaurav.jpa.hibernate.foodproject.repository.entities;
-
+package com.gaurav.food.app.order.service.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
 
 @Entity
-@Table(name = "MenuItemInstance")
-public class MenuItemInstance {
+@Table(name = "OrderItemInstance")
+public class OrderItemInstance {
 
     @Id
     @GeneratedValue // Generating id through jpa
     private Long id;
-    @Column(name = "Item_Name", nullable = false)
-    private String itemName;
-    @Column(nullable = false)
-    private String ingredients;
+    @Column(name = "Order_Item_Name", nullable = false)
+    private String orderItemName;
     @ManyToOne()
-    @JoinColumn(name = "Menu_Instance_Id")
-    private MenuInstance menuInstance;
-    @Column(name="Item_Max_Limit",nullable = false)
-    private Integer itemMaxLimit;
+    @JoinColumn(name="Order_Instance_Id")
+    private OrderInstance orderInstanceId;
+    @Column(name = "Order_Item_Type", nullable = false)
+    private String orderItemType;
+    @Column(name = "Order_Item_Quantity", nullable = false)
+    private Integer orderItemQuantity;
     @Column(name = "Created_By", nullable = false)
     private String createdBy;
     @Column(name = "Updated_By", nullable = false)
@@ -37,29 +37,37 @@ public class MenuItemInstance {
         return id;
     }
 
-    public String getItemName() {
-        return itemName;
+    public String getOrderItemName() {
+        return orderItemName;
     }
 
-    public void setItemName(String itemName) {
-        this.itemName = itemName;
-    }
-
-    public String getIngredients() {
-        return ingredients;
-    }
-
-    public void setIngredients(String ingredients) {
-        this.ingredients = ingredients;
+    public void setOrderItemName(String orderItemName) {
+        this.orderItemName = orderItemName;
     }
 
     @JsonIgnore
-    public MenuInstance getMenuInstance() {
-        return menuInstance;
+    public OrderInstance getOrderInstanceId() {
+        return orderInstanceId;
     }
 
-    public void setMenuInstance(MenuInstance menuInstance) {
-        this.menuInstance = menuInstance;
+    public void setOrderInstanceId(OrderInstance orderInstanceId) {
+        this.orderInstanceId = orderInstanceId;
+    }
+
+    public String getOrderItemType() {
+        return orderItemType;
+    }
+
+    public void setOrderItemType(String orderItemType) {
+        this.orderItemType = orderItemType;
+    }
+
+    public Integer getOrderItemQuantity() {
+        return orderItemQuantity;
+    }
+
+    public void setOrderItemQuantity(Integer orderItemQuantity) {
+        this.orderItemQuantity = orderItemQuantity;
     }
 
     public String getCreatedBy() {
@@ -94,31 +102,24 @@ public class MenuItemInstance {
         this.createdDate = createdDate;
     }
 
-    public Integer getItemMaxLimit() { return itemMaxLimit; }
-
-    public void setItemMaxLimit(Integer itemMaxLimit) { this.itemMaxLimit = itemMaxLimit; }
-
-
-    public MenuItemInstance(String itemName, String ingredients, Integer itemMaxLimit,String createdBy, String updatedBy) {
-        this.id = id;
-        this.itemName = itemName;
-        this.ingredients = ingredients;
-        this.itemMaxLimit = itemMaxLimit;
+    public OrderItemInstance(String orderItemName, String orderItemType, Integer orderItemQuantity, String createdBy, String updatedBy) {
+        this.orderItemName = orderItemName;
+        this.orderItemType = orderItemType;
+        this.orderItemQuantity = orderItemQuantity;
         this.createdBy = createdBy;
         this.updatedBy = updatedBy;
     }
 
-    public MenuItemInstance() {
+    public OrderItemInstance() {
     }
-
 
     @Override
     public String toString() {
-        return "MenuItemInstance{" +
+        return "OrderItemInstance{" +
                 "id=" + id +
-                ", itemName='" + itemName + '\'' +
-                ", ingredients='" + ingredients + '\'' +
-                ", itemMaxLimit='" + itemMaxLimit + '\'' +
+                ", orderItemName='" + orderItemName + '\'' +
+                ", orderItemType='" + orderItemType + '\'' +
+                ", orderItemQuantity=" + orderItemQuantity +
                 ", createdBy='" + createdBy + '\'' +
                 ", updatedBy='" + updatedBy + '\'' +
                 ", lastUpdatedDate=" + lastUpdatedDate +

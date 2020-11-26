@@ -24,9 +24,7 @@ public class MenuInstance {
     @NotNull
     @Column(name = "Menu_Name", nullable = false)
     private String menuName;
-    //@OneToMany(mappedBy = "menuInstance",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name = "Menu_Instance_Id")
+    @OneToMany(mappedBy = "menuInstance",fetch = FetchType.EAGER,cascade = CascadeType.ALL)
     private List<MenuItemInstance> menuItemInstances = new ArrayList<>();
     @Column(name = "Menu_Type", nullable = false)
     private String menuType;
@@ -34,7 +32,6 @@ public class MenuInstance {
     private LocalDate menuForDate;
     @Column(name="Order_Time_Limit",nullable = false)
     private LocalTime orderTimeLimit;
-
     @Column(name = "Created_By", nullable = false)
     private String createdBy;
     @Column(name = "Updated_By", nullable = false)

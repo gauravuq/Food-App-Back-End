@@ -16,7 +16,7 @@ spring:
         - id: food-app-order-service
           uri: lb://food-app-order-service
           predicates:
-            - Path=/api/order/**
+            - Path=/api/customer/order/**
             - Method=GET,POST,DELETE,PUT,OPTIONS,HEAD
           filters:
             - RemoveRequestHeader=Cookie
