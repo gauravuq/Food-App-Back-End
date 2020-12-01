@@ -1,4 +1,3 @@
-
 server:
   servlet:
     context-path: /api  # change the context path which is before the resource path;

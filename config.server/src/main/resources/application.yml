@@ -1,7 +1,5 @@
 server:
-  port: 8078
-  servlet:
-    context-path: /api
+  port: 10078
 spring:
   application:
     name: food-app-config-server
