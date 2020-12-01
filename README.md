@@ -27,7 +27,7 @@ This project is about creating a Back-End Microservices based solution for a kit
 #### Spring Eureka Service Registry for Microservices 
   - [X] To enable Eureka Service Registry for microservices.
 #### Spring Cloud Config Server for Microservices 
-  - [ ] To enable Eureka Service Registry for microservices.
+  - [ ] To enable Cloud Config Server for microservices.
   
 ### Order Placement Scenario
 
