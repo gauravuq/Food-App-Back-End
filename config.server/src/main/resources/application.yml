@@ -1,0 +1,12 @@
+server:
+  port: 8078
+  servlet:
+    context-path: /api
+spring:
+  application:
+    name: food-app-config-server
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/gauravuq/git-localconfig-repo
