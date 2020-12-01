@@ -22,10 +22,12 @@ This project is about creating a Back-End Microservices based solution for a kit
 * [ ] Front-End UI to Back-End Services request protected by PKCE Authorisation Code Grant Type;
 * [ ] Communication between Back-End Services is protected by Client Credential Grant Type;
 
-#### Api Gateway for Microservices 
+#### Spring Api Gateway for Microservices 
   - [X] To enable Spring Cloud Api Gateway for microservices.
-#### Eureka Service Registry for Microservices 
+#### Spring Eureka Service Registry for Microservices 
   - [X] To enable Eureka Service Registry for microservices.
+#### Spring Cloud Config Server for Microservices 
+  - [ ] To enable Eureka Service Registry for microservices.
   
 ### Order Placement Scenario
 
