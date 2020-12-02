@@ -1,13 +1,15 @@
 package com.gaurav.food.app.order.service;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
 @Component
-@ConfigurationProperties("order-items")
+@ConfigurationProperties("food-app-order-service")
 public class Configuration {
 
     private Integer min;
+
     private Integer max;
 
     public Integer getMin() {
@@ -26,6 +28,4 @@ public class Configuration {
         this.max = max;
     }
 
-    public Configuration() {
-    }
 }

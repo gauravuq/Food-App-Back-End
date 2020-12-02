@@ -1,7 +1,9 @@
 package com.gaurav.food.app.order.service.controllers;
 
 import com.gaurav.food.app.order.service.Configuration;
+import com.gaurav.food.app.order.service.OrderConfiguration;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -10,6 +12,7 @@ public class OrderInstanceController {
 
     @Autowired
     Configuration configuration;
+
 
     @PostMapping("/order/create")
     public void createOrder(String paramOne) {
@@ -32,8 +35,8 @@ public class OrderInstanceController {
     }
 
     @GetMapping("/order/configuration")
-    public String getConfiguration() {
-        return configuration.getMax().toString();
+    public OrderConfiguration getConfiguration() {
+        return new OrderConfiguration(configuration.getMax(),configuration.getMin());
     }
 
 }

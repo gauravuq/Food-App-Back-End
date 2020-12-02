@@ -33,6 +33,10 @@ spring:
       enabled: ALWAYS
   application:
     name: food-app-order-service
+  config:
+    import: 'optional:configserver:http://localhost:10078'
+  profiles:
+    active: dev
 eureka:
   client:
     service-url:
