@@ -1,43 +1,8 @@
-server:
-  servlet:
-    context-path: /api  # change the context path which is before the resource path;
-  port: 10083 # random port
-logging:
-  level:
-    org:
-      springframework: INFO
-      hibernate:
-        stat: debug
-        type: trace  # to show the parameters of the the sql getting executed in jpa
 spring:
-  jpa:
-    properties:
-      hibernate:
-        generate_statistics: false
-        format_sql: true  # enable proper formatting for the sql's getting printed by the spring jpa
-    show-sql: true # show the sql's on the terminal for development purpose
-  h2: # h2 setup
-    console:
-      enabled: true
-      path: /h2-console
-  datasource:
-    url: jdbc:h2:mem:testdb
-  data:
-    jpa:
-      repositories:
-        bootstrap-mode: default
-  main:  # color mode for terminal
-    banner-mode: off
-  output:
-    ansi:
-      enabled: ALWAYS
   application:
     name: food-app-order-service
   config:
     import: 'optional:configserver:http://localhost:10078'
   profiles:
     active: dev
-eureka:
-  client:
-    service-url:
-      defaultZone: http://localhost:10079/eureka
+
