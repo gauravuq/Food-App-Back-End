@@ -10,5 +10,6 @@ import java.util.List;
 public interface MenuInstanceRepo extends JpaRepository<MenuInstance,Long> {
     public List<MenuInstance> findByMenuNameContains(String menuName);
     public MenuInstance findByMenuTypeAndMenuForDate(String menuType, LocalDate menuForDate);
+    public List<MenuInstance> findByMenuType(String menuType);
 
 }

@@ -17,6 +17,8 @@ public class MenuItemInstance {
     private Long id;
     @Column(name = "Item_Name", nullable = false)
     private String itemName;
+    @Column(name = "Item_Type", nullable = false)
+    private String itemType;
     @Column(nullable = false)
     private String ingredients;
     @ManyToOne()
@@ -98,10 +100,13 @@ public class MenuItemInstance {
 
     public void setItemMaxLimit(Integer itemMaxLimit) { this.itemMaxLimit = itemMaxLimit; }
 
+    public String getItemType() { return itemType; }
 
-    public MenuItemInstance(String itemName, String ingredients, Integer itemMaxLimit,String createdBy, String updatedBy) {
-        this.id = id;
+    public void setItemType(String itemType) { this.itemType = itemType; }
+
+    public MenuItemInstance(String itemName,String itemType ,String ingredients, Integer itemMaxLimit, String createdBy, String updatedBy) {
         this.itemName = itemName;
+        this.itemType = itemType;
         this.ingredients = ingredients;
         this.itemMaxLimit = itemMaxLimit;
         this.createdBy = createdBy;
@@ -117,6 +122,7 @@ public class MenuItemInstance {
         return "MenuItemInstance{" +
                 "id=" + id +
                 ", itemName='" + itemName + '\'' +
+                ", itemType='" + itemType + '\'' +
                 ", ingredients='" + ingredients + '\'' +
                 ", itemMaxLimit='" + itemMaxLimit + '\'' +
                 ", createdBy='" + createdBy + '\'' +

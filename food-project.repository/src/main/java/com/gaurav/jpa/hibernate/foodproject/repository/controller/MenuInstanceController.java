@@ -5,7 +5,8 @@ import com.gaurav.jpa.hibernate.foodproject.repository.entities.MenuInstance;
 import com.gaurav.jpa.hibernate.foodproject.repository.exceptions.MenuInstanceException;
 import com.gaurav.jpa.hibernate.foodproject.repository.messages.ResponseMessage;
 import com.gaurav.jpa.hibernate.foodproject.repository.services.MenuInstanceService;
-import com.gaurav.jpa.hibernate.foodproject.repository.services.MenuPdfGeneratorService;
+import com.gaurav.jpa.hibernate.foodproject.repository.services.MenuPdfBuilderService;
+import com.gaurav.jpa.hibernate.foodproject.repository.services.MenuPdfBuilderServiceForAllMenus;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import javax.ws.rs.Path;
 import java.io.ByteArrayInputStream;
 import java.time.LocalDate;
 import java.util.List;
@@ -32,7 +34,7 @@ public class MenuInstanceController {
     MenuInstanceService menuInstanceService;
 
     @Autowired
-    MenuPdfGeneratorService menuPdfGeneratorService;
+    MenuPdfBuilderService menuPdfBuilderService;
 
     @GetMapping("/menu/all")
     public List<MenuInstance> retrieveMenus() {
@@ -83,18 +85,22 @@ public class MenuInstanceController {
         return new ResponseEntity<ResponseMessage>(responseMessage, HttpStatus.CREATED);
     }
 
-    @GetMapping(value = "/menu/pdf", produces = MediaType.APPLICATION_PDF_VALUE)
-    public ResponseEntity<InputStreamResource> getMenuPdf() {
-        var headers = new HttpHeaders();
-        ByteArrayInputStream menuPdf;
-        List<MenuInstance> menuInstances = menuInstanceService.getAllMenus();
+
+    //TODO: Make This function return all Type of Menus: Lunch, Dinner, BreakFast
+    @GetMapping(value = "/menu/{menuType}/pdf", produces = MediaType.APPLICATION_PDF_VALUE)
+    public ResponseEntity<InputStreamResource> getMenuTypePdf(@PathVariable String menuType) {
+        HttpHeaders headers = new HttpHeaders();
         headers.add("Content-Disposition", "inline; filename=Menu.pdf");  // attachment
-        menuPdf = menuPdfGeneratorService.generateMenuWithMenuItems(menuInstances.get(0));
+        List<MenuInstance> menuInstances = menuInstanceService.getMenuByType(menuType.toUpperCase());
+        MenuPdfBuilderServiceForAllMenus menuPdfBuilderServiceForAllMenus = new MenuPdfBuilderServiceForAllMenus();
+        menuPdfBuilderServiceForAllMenus.setMenuHeadersForThePdf(menuInstances.get(0));
+        menuInstances.forEach(menuPdfBuilderServiceForAllMenus::setMenuFieldsForThePdf);
+        ByteArrayInputStream menuPdfByteArrayInputStream = menuPdfBuilderServiceForAllMenus.getThePreparedMenuPdf();
         return ResponseEntity
                 .ok()
                 .headers(headers)
                 .contentType(MediaType.APPLICATION_PDF)
-                .body(new InputStreamResource(menuPdf));
+                .body(new InputStreamResource(menuPdfByteArrayInputStream));
     }
 
 

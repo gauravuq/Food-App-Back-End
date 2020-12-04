@@ -1,11 +1,11 @@
 package com.gaurav.jpa.hibernate.foodproject.repository.services;
 
 import com.gaurav.jpa.hibernate.foodproject.repository.entities.MenuInstance;
-import com.gaurav.jpa.hibernate.foodproject.repository.entities.MenuItemInstance;
+/*import com.gaurav.jpa.hibernate.foodproject.repository.entities.MenuItemInstance;
 import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
-import com.itextpdf.text.pdf.PdfWriter;
+import com.itextpdf.text.pdf.PdfWriter;*/
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Scope;
@@ -17,14 +17,14 @@ import java.io.ByteArrayOutputStream;
 
 @Service
 @Scope(proxyMode = ScopedProxyMode.TARGET_CLASS,scopeName ="prototype")
-public class MenuPdfGeneratorService {
+public class MenuPdfBuilderService {
 
     Logger logger = LoggerFactory.getLogger(this.getClass());
 
     // needs to be refactored
     public ByteArrayInputStream generateMenuWithMenuItems(MenuInstance menuInstance)  {
 
-        Document document = new Document();
+      /*  Document document = new Document();
         ByteArrayOutputStream out = new ByteArrayOutputStream();
 
         try {
@@ -114,7 +114,9 @@ public class MenuPdfGeneratorService {
             throw new RuntimeException("Error in Fetching Menu Pdf",ex);
         }
 
-        return new ByteArrayInputStream(out.toByteArray());
+        return new ByteArrayInputStream(out.toByteArray());*/
+
+        return null;
     }
 
 

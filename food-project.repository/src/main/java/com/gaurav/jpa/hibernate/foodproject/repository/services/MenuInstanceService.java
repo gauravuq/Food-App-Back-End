@@ -28,6 +28,11 @@ public class MenuInstanceService {
         return menuInstances;
     }
 
+    public List<MenuInstance> getMenuByType(String menuType) {
+        List<MenuInstance> menuInstances = menuInstanceRepo.findByMenuType(menuType);
+        return menuInstances;
+    }
+
     public List<MenuInstance> getMenusByKeyword(String keyword) {
         List<MenuInstance> menuInstances = menuInstanceRepo.findByMenuNameContains(keyword);
         return menuInstances;
