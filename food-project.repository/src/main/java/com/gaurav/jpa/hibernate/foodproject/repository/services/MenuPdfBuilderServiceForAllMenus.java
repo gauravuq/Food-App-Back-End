@@ -57,36 +57,43 @@ public class MenuPdfBuilderServiceForAllMenus {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
 
+    public ByteArrayInputStream pdfMenuBuilder(List<MenuInstance> menuInstances){
+        setMenuHeadersForThePdf(menuInstances.get(0));
+        for (MenuInstance menuInstance: menuInstances) {
+            setMenuFieldsForThePdf(menuInstance);
+        }
+        getThePreparedMenuPdf();
+        return new ByteArrayInputStream(outStream.toByteArray());
     }
 
     //TODO: make headers dynamic by reading from MenuItemType table
-    public void setMenuHeadersForThePdf(MenuInstance menuInstance) {
-        List<String> headersForAllMenu = new ArrayList<>();
-        String[] headersForMenu = {"Menu Name", "Menu Type", "Menu_For_Date", "Order_Time_Limit"};
-        headersForAllMenu.addAll(Arrays.asList(headersForMenu));
-        List<MenuItemInstance> menuItemInstances = menuInstance.getMenuItemInstances().stream().sorted(Comparator.comparing(MenuItemInstance::getItemType)).collect(Collectors.toList());
+    private void setMenuHeadersForThePdf(MenuInstance menuInstance) {
+        List<String> headersForTheMenu = new ArrayList<>();
+        String[] pdfColumnHeadersForTheMenu = {"Menu Name", "Menu Type", "Menu_For_Date", "Order_Time_Limit"};
+        headersForTheMenu.addAll(Arrays.asList(pdfColumnHeadersForTheMenu));
+        List<MenuItemInstance> menuItemInstances = getOrderedMenuItemInstances(menuInstance);
         menuItemInstances.forEach((item) -> {
-            headersForAllMenu.add(item.getItemType());
+            headersForTheMenu.add(item.getItemType());
         });
-        float[] columnsColSpan = new float[headersForAllMenu.size()];
+        float[] columnsColSpan = new float[headersForTheMenu.size()];
         Arrays.fill(columnsColSpan, 1f);
         table = new Table(columnsColSpan);
         table.setWidth(UnitValue.createPercentValue(100))
                 .setTextAlignment(TextAlignment.CENTER)
                 .setHorizontalAlignment(HorizontalAlignment.CENTER);
-        headersForAllMenu.forEach((item) -> {
+        headersForTheMenu.forEach((item) -> {
             Cell cell = new Cell().add(new Paragraph(item));
             cell.setNextRenderer(new RoundedCornersCellRenderer(cell));
             cell.setPadding(5).setBorder(null);
             table.addHeaderCell(cell);
         });
-
-
     }
 
+
     //TODO: make fields dynamic later
-    public void setMenuFieldsForThePdf(MenuInstance menuInstance) {
+    private void setMenuFieldsForThePdf(MenuInstance menuInstance) {
         Cell cell1 = new Cell().add(new Paragraph(menuInstance.getMenuForDate().getDayOfWeek() + " " + menuInstance.getMenuName()));
         cell1.setFont(font).setBorder(new SolidBorder(0.5f));
         table.addCell(cell1);
@@ -99,7 +106,7 @@ public class MenuPdfBuilderServiceForAllMenus {
         Cell cell4 = new Cell().add(new Paragraph(menuInstance.getOrderTimeLimit().toString()));
         cell4.setFont(font).setBorder(new SolidBorder(0.5f));
         table.addCell(cell4);
-        List<MenuItemInstance> menuItemInstances = menuInstance.getMenuItemInstances().stream().sorted(Comparator.comparing(MenuItemInstance::getItemType)).collect(Collectors.toList());
+        List<MenuItemInstance> menuItemInstances = getOrderedMenuItemInstances(menuInstance);
         menuItemInstances.forEach((item) -> {
             Cell cell = new Cell().add(new Paragraph(item.getItemName()));
             cell.setFont(font).setBorder(new SolidBorder(0.5f));
@@ -107,11 +114,13 @@ public class MenuPdfBuilderServiceForAllMenus {
         });
     }
 
-    //TODO: make closing mechanism more efficient
-    public ByteArrayInputStream getThePreparedMenuPdf() {
+    private void getThePreparedMenuPdf() {
         document.add(table);
         document.close();
-        return new ByteArrayInputStream(outStream.toByteArray());
+    }
+
+    private List<MenuItemInstance> getOrderedMenuItemInstances(MenuInstance menuInstance) {
+        return menuInstance.getMenuItemInstances().stream().sorted(Comparator.comparing(MenuItemInstance::getItemType)).collect(Collectors.toList());
     }
 
 

@@ -3,6 +3,7 @@ package com.gaurav.jpa.hibernate.foodproject.repository.services;
 import com.gaurav.jpa.hibernate.foodproject.repository.entities.MenuInstance;
 import com.gaurav.jpa.hibernate.foodproject.repository.exceptions.MenuInstanceException;
 import com.gaurav.jpa.hibernate.foodproject.repository.repositories.MenuInstanceRepo;
+import org.apache.tomcat.jni.Local;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +16,7 @@ import java.util.List;
 
 
 @Service
-@Scope(proxyMode = ScopedProxyMode.TARGET_CLASS,scopeName ="prototype")
+@Scope(proxyMode = ScopedProxyMode.TARGET_CLASS, scopeName = "prototype")
 public class MenuInstanceService {
 
     Logger logger = LoggerFactory.getLogger(this.getClass());
@@ -43,10 +44,17 @@ public class MenuInstanceService {
     }
 
     public void deleteMenuAndItems(Long menuId) {
-            menuInstanceRepo.deleteById(menuId);
+        menuInstanceRepo.deleteById(menuId);
     }
 
     public MenuInstance getMenusByTypeAndForDate(String menuType, LocalDate menuForDate) {
-        return menuInstanceRepo.findByMenuTypeAndMenuForDate(menuType,menuForDate);
+        MenuInstance menuInstance =  menuInstanceRepo.findByMenuTypeAndMenuForDate(menuType, menuForDate);
+        return menuInstance;
     }
+
+    public List<MenuInstance> getMenusByTypeAndAfterForDate(String menuType, LocalDate menuForDateAfter) {
+        List<MenuInstance> menuInstances = menuInstanceRepo.findByMenuTypeAndMenuForDateAfter(menuType, menuForDateAfter);
+        return menuInstances;
+    }
+
 }
