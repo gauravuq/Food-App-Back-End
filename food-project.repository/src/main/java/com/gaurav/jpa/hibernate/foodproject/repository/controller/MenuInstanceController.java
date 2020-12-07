@@ -15,15 +15,18 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import javax.validation.constraints.*;
 import java.io.ByteArrayInputStream;
 import java.time.LocalDate;
 import java.util.List;
 
 @RestController
 @RequestMapping("/kitchen")
+@Validated  // Required to validate path variables
 public class MenuInstanceController {
 
     Logger logger = LoggerFactory.getLogger(this.getClass());
@@ -83,8 +86,8 @@ public class MenuInstanceController {
     }
 
     @GetMapping(value = "/menu/{menuType}/pdf/{menuForDateAfter}", produces = MediaType.APPLICATION_PDF_VALUE)
-    public ResponseEntity<InputStreamResource> getMenuTypePdf(@PathVariable String menuType,
-                                                              @PathVariable @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate menuForDateAfter) {
+    public ResponseEntity<InputStreamResource> getMenuTypePdf(  @Size(min = 2, message = "Please Specify a proper Menu Type") @PathVariable String menuType,
+                                                                @PathVariable @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) @Valid LocalDate menuForDateAfter) {
         HttpHeaders headers = new HttpHeaders();
         headers.add("Content-Disposition", "inline; filename=Menu.pdf");  // attachment
         List<MenuInstance> menuInstances = menuInstanceService.getMenusByTypeAndAfterForDate(menuType.toUpperCase(),menuForDateAfter);

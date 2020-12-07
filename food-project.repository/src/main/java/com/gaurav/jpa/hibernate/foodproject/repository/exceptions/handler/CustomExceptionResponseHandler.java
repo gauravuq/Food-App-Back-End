@@ -1,6 +1,7 @@
 package com.gaurav.jpa.hibernate.foodproject.repository.exceptions.handler;
 
 import com.gaurav.jpa.hibernate.foodproject.repository.exceptions.MenuInstanceException;
+import org.springframework.beans.TypeMismatchException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -32,11 +33,17 @@ public class CustomExceptionResponseHandler  extends ResponseEntityExceptionHand
     }
 
 
-    //Override this to handle validation exception as the binding of function arguments fail
+    //The handleMethodArgumentNotValid handles the MethodArgumentNotValidException which is thrown when validation on an argument annotated with @Valid fails.
     @Override
     protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
         ExceptionResponse exceptionResponse = new ExceptionResponse(LocalDateTime.now(),ex.getBindingResult().toString(),ex.getMessage());
         return new ResponseEntity(exceptionResponse,HttpStatus.BAD_REQUEST);
     }
 
+    // This handles Controller level validation for path or request variable;
+    @Override
+    protected ResponseEntity<Object> handleTypeMismatch(TypeMismatchException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
+        ExceptionResponse exceptionResponse = new ExceptionResponse(LocalDateTime.now(),ex.getMessage(),ex.getMessage());
+        return new ResponseEntity(exceptionResponse,HttpStatus.BAD_REQUEST);
+    }
 }
