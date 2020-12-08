@@ -1,20 +1,7 @@
-server:
-  servlet:
-    context-path: /api  # change the context path which is before the resource path;
-  port: 10085 #0 #random port
-logging:
-  level:
-    org:
-      springframework: INFO
 spring:
-  main:  # color mode for terminal
-    banner-mode: off
-  output:
-    ansi:
-      enabled: ALWAYS
   application:
     name: food-app-email-service
-eureka:
-  client:
-    service-url:
-      defaultZone: http://localhost:10079/eureka
+  config:
+    import: 'optional:configserver:http://localhost:10078'
+  profiles:
+    active: dev

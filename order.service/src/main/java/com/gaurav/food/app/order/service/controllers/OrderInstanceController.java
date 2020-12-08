@@ -1,9 +1,7 @@
 package com.gaurav.food.app.order.service.controllers;
 
-import com.gaurav.food.app.order.service.Configuration;
-import com.gaurav.food.app.order.service.OrderConfiguration;
+import com.gaurav.food.app.order.service.configuration.Configuration;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.web.bind.annotation.*;
 
@@ -37,8 +35,8 @@ public class OrderInstanceController {
     }
 
     @GetMapping("/order/configuration")
-    public OrderConfiguration getConfiguration() {
-        return new OrderConfiguration(configuration.getMax(),configuration.getMin());
+    public Configuration getConfiguration() {
+        return configuration;
     }
 
 }

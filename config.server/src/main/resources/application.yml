@@ -7,4 +7,6 @@ spring:
     config:
       server:
         git:
-          uri: https://github.com/gauravuq/git-localconfig-repo
+          uri: 'file:///home/gaurav/Desktop/COURSES/SPRING MICROSERVICES CLOUD/git-localconfig-repo'
+
+          #https://github.com/gauravuq/git-localconfig-repo
